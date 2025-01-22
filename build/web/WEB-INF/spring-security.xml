@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+    <http auto-config="true">
+        <access-denied-handler error-page="/error" />
+<!--    <intercept-url pattern="/getNotificationInformation" method="GET" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_ALARMS')" />-->
+        <intercept-url pattern="/" access="permitAll" />  <!--all URL will be checked if user is authenticated -->
+        <!--<intercept-url pattern="/home" access="isAuthenticated()" />-->
+        <!--<intercept-url pattern="/getMyProfile" access="isAuthenticated()" />-->
+        
+<!--        <intercept-url pattern="/getUsers" access="hasAnyRole('ROLE_ADMIN','ROLE_SECURITY')" />                
+        <intercept-url pattern="/getRoles" access="hasAnyRole('ROLE_ADMIN','ROLE_SECURITY')" />
+        <intercept-url pattern="/catUserType" access="hasAnyRole('ROLE_ADMIN','ROLE_SECURITY')" />
+        <intercept-url pattern="/catOrganization" access="hasAnyRole('ROLE_ADMIN','ROLE_CATALOGS')" />
+        <intercept-url pattern="/catServers" access="hasAnyRole('ROLE_ADMIN','ROLE_CATALOGS')" />
+        <intercept-url pattern="/catPrograms" access="hasAnyRole('ROLE_ADMIN','ROLE_CATALOGS')" />
+        <intercept-url pattern="/getGisProfile" access="hasAnyRole('ROLE_ADMIN','ROLE_GISLAYER')" />
+        <intercept-url pattern="/getSecurityGroups" access="hasAnyRole('ROLE_ADMIN','ROLE_SECURITY')" />
+        <intercept-url pattern="/getNotificationsType" access="hasAnyRole('ROLE_ADMIN','ROLE_ALARMS')" />
+        <intercept-url pattern="/getNotificationInformation" access="hasAnyRole('ROLE_ADMIN','ROLE_ALARMS')" />
+        <intercept-url pattern="/asignAlarm" access="hasAnyRole('ROLE_ADMIN','ROLE_ALARMS')" />
+        <intercept-url pattern="/alarmRules" access="hasAnyRole('ROLE_ADMIN','ROLE_ALARMS')" />
+        <intercept-url pattern="/alarmReport" access="hasAnyRole('ROLE_ADMIN','ROLE_ALARMS')" />
+        
+        <intercept-url pattern="/reportEventLog" access="hasAnyRole('ROLE_ADMIN','ROLE_REPORTS')" />                
+        <intercept-url pattern="/adminConsoleCatRoles" access="hasAnyRole('ROLE_ADMIN','ROLE_REPORTS')" />-->
+        
+        <intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY" /> <!-- all URL will be checked if user is authenticated -->
+        <intercept-url pattern="/home" access="ROLE_ADMIN" />        
+        
+        <form-login
+            login-page="/"            
+            default-target-url="/entrar"
+            authentication-failure-url="/?error"/> <!-- Use a custom login page -->
+        <logout logout-success-url="/" /> <!-- logout url we will use -->         
+    </http>
+
+    <authentication-manager>
+        <!--<authentication-provider>-->
+<!--            <user-service>
+                <user name="admin" password="root" authorities="ROLE_ADMIN, ROLE_USER" />
+                <user name="adan.gonzalez" password="tester1" authorities="ROLE_ADMIN" />
+                <user name="rrivera" password="ricknr1410" authorities="ROLE_USER" />
+                <user name="mmedina" password="medina" authorities="ROLE_ALARMS, ROLE_REPORTS" />
+            </user-service>-->
+            
+<!--            <password-encoder hash="md5" base64="true"/>
+            <jdbc-user-service data-source-ref="postgresql_dataSource"
+                        users-by-username-query="select username,password,enabled from traffic_rs.admin_console_users where username=?"
+                        authorities-by-username-query="select username,role from traffic_rs.adminconsole_user_roles where username =?" />
+        </authentication-provider>-->
+        
+        <authentication-provider ref="CustomAuthenticationProvider"/>        
+    </authentication-manager>
+    <beans:bean id="CustomAuthenticationProvider" class="com.util.CustomAuthenticationProvider"/>
+  
+</beans:beans>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/01/2023 11:05:33 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.model.mssql.AdmUsuarios" table="ADM_USUARIOS" schema="dbo" catalog="BD_ADMIN" optimistic-lock="version">
+        <id name="idUsuario" type="string">
+            <column name="ID_USUARIO" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="admArea" class="com.model.mssql.AdmArea" fetch="select">
+            <column name="ID_Area" precision="9" scale="0" />
+        </many-to-one>
+        <many-to-one name="admPerfil" class="com.model.mssql.AdmPerfil" fetch="select">
+            <column name="ID_PERFIL" precision="9" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" not-null="true" />
+        </property>
+        <property name="idAplicacion" type="java.lang.Long">
+            <column name="ID_APLICACION" precision="10" scale="0" />
+        </property>
+        <property name="idZona" type="java.lang.Integer">
+            <column name="ID_ZONA" precision="9" scale="0" />
+        </property>
+        <property name="fechaExpiracion" type="date">
+            <column name="FECHA_EXPIRACION" />
+        </property>
+        <property name="statusPassword" type="java.lang.Boolean">
+            <column name="STATUS_PASSWORD" precision="1" scale="0" />
+        </property>
+        <property name="jefeArea" type="java.lang.Boolean">
+            <column name="JEFE_AREA" precision="1" scale="0" />
+        </property>
+        <property name="statusUsuario" type="java.lang.Boolean">
+            <column name="STATUS_USUARIO" precision="1" scale="0" />
+        </property>
+        <property name="idAreaIngresos" type="java.lang.Boolean">
+            <column name="ID_AREA_INGRESOS" precision="1" scale="0" />
+        </property>
+        <property name="jefeCoordinador" type="java.lang.Boolean">
+            <column name="JEFE_COORDINADOR" precision="1" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>
