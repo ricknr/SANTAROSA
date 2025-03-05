@@ -20,23 +20,22 @@
       <a href="#" class="d-block">${sessionScope.sNombreUsuario}</a>
     </div>
   </div>
-  
-  <!-- Sidebar Menu -->
+    <!-- Sidebar Menu -->
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->      
       <li class="nav-item">
-        <a href="pages/widgets.html" class="nav-link">
+        <a href="entrar" class="nav-link">
           <i class="nav-icon fas fa-th"></i>
           <p>Dashboard<span class="right badge badge-danger">Inicio</span></p>
         </a>
       </li>
-      <c:if test="${fn:contains(sessionScope.sRoles,'ROLE_PERMISSIONS') || fn:contains(sessionScope.sRoles,'ROLE_ADMIN')}">
-      <li class="nav-item">
-        <a href="pages/widgets.html" class="nav-link">
-          <i class="nav-icon fas fa-edit"></i>
+     <c:if test="${fn:contains(sessionScope.sRoles,'ROLE_PERMISSIONS') || fn:contains(sessionScope.sRoles,'ROLE_ADMIN')}">
+     <li class="nav-item">
+      <a href="${pageContext.request.contextPath}/cliente" class="nav-link">
+         <i class="nav-icon fas fa-edit"></i>
           <p>Clientes</p>
-        </a>
+      </a>
       </li>
       <li class="nav-item">
         <a href="pages/widgets.html" class="nav-link">
@@ -45,7 +44,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="pages/widgets.html" class="nav-link">
+        <a href="${pageContext.request.contextPath}/contrato" class="nav-link">
           <i class="nav-icon fas fa-edit"></i>
           <p>Contratos</p>
         </a>
