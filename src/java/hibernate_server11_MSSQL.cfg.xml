@@ -42,7 +42,8 @@ Contributor(s):
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-    <property name="hibernate.connection.url">jdbc:sqlserver://sistemacaritas.ddns.net:1433;databaseName=BD_ADMIN</property>
+    <!-- <property name="hibernate.connection.url">jdbc:sqlserver://sistemacaritas.ddns.net:1433;databaseName=BD_ADMIN</property> -->
+    <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=BD_ADMIN</property>
     <property name="hibernate.connection.username">karitas</property>
     <property name="hibernate.connection.password">karitas2011</property>
     <mapping resource="com/model/mssql/AdmUsuarios.hbm.xml"/>
